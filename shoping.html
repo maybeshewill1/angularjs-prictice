@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html ng-app="mod1">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<div class="container" ng-controller="ctr1">
+<h2>购物车</h2>
+    数量 :<input type="text" ng-model="price"/>
+    单价 :<input type="number" ng-model="count"/>
+    小计：{{price*count}}
+    <br/>
+    <textarea ng-model="intro" rows="5" cols="20"></textarea>
+<p>{{intro}}</p>
+    <br/>
+    <select ng-model="province">
+        <option value="上海">上海</option>
+        <option value="浙江">浙江</option>
+        <option value="辽宁" >辽宁</option>
+        <option value="新疆">新疆</option>
+    </select>
+    <p>{{province}}</p>
+    <br/><br/>
+    <input type="radio" name="sex" value="male" ng-model="xingbie"/>男
+    <input type="radio" name="sex" value="female" ng-model="xingbie"/>女
+
+<p>{{xingbie}}</p>
+    <br/><br/>
+    <input type="checkbox" ng-model="iagree"/>我同意本站协议条款
+    <p>{{iagree}}</p>
+    <br/><br/>
+    <p>同意使用条款可任意注册，否则禁止注册</p>
+    <input type="checkbox" ng-model="at" >我同意使用条款
+    <br/>
+    <input type="button" ng-if="at" class="btn btn-success" value="立即注册"/>
+    <input type="button" ng-disabled="!at" class="btn btn-success" value="立即注册"/>
+
+    <input type="button" ng-show="at" class="btn btn-success" value="立即注册"/>
+    <br/><br/>
+    <select  ng-model="head">
+        <option value="1.jpg">人物1</option>
+        <option value="2.jpg">人物2</option>
+        <option value="3.jpg">人物3</option>
+        <option value="4.jpg">人物4</option>
+    </select>
+    <img ng-src="img/{{head}}" alt="" style="width:300px;height:400px;"/>
+    <br/><br/>
+    <h1>全选取消全选</h1>
+    
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>选择</th>
+        <th>姓名</th>
+        <th>工资</th>
+        <th>操作</th>
+    </tr>
+    <tbody>
+    <tr>
+        <td><input type="checkbox" ng-checked="selectall"/></td>
+        <td>tom</td>
+        <td>$3000</td>
+        <td><input type="button" class="btn-danger" value="删除"/></td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" ng-checked="selectall"/></td>
+        <td>toym</td>
+        <td>$5000</td>
+        <td><input type="button" class="btn-danger" value="删除"/></td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" ng-checked="selectall"/></td>
+        <td>to55m</td>
+        <td>$3500</td>
+        <td><input type="button" class="btn-danger" value="删除"/></td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" ng-checked="selectall"/></td>
+        <td>to33m</td>
+        <td>$7000</td>
+        <td><input type="button" class="btn-danger" value="删除"/></td>
+    </tr>
+    </tbody>
+    </thead>
+</table>
+    <input type="checkbox" ng-model="selectall"/>
+    <span ng-show="!selectall">全选</span><span ng-show="selectall">取消全选</span>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/angular.js"></script>
+<script>
+    angular.module('mod1',['ng'])
+            .controller('ctr1',function($scope){
+                $scope.price=0;
+                $scope.count=0;
+                $scope.province='辽宁';
+                $scope.xingbie='male';
+                $scope.at='true';
+                $scope.head='1.jpg';
+                $scope.$watch('price',function(){
+                    console.log($scope.price)
+
+                })
+            })
+</script>
+</body>
+</html>

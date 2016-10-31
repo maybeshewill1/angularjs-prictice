@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="mymod1">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<div class="container" ng-controller="ctr1">
+    <h1>练习1</h1>
+    <p>您的点击次数{{count}}</p>
+    <button ng-click="add()">click</button>
+    <p>您的点击次数{{count1}}</p>
+    <button ng-click="count1=count1+2">click</button>
+    <h1>练习2</h1>
+
+</div>
+<div ng-controller="ctr2">
+    <img class="col-lg-offset-2" style="width:200px;height:300px;" ng-src="img/{{imgsrc}}" alt=""/>
+    <button ng-click="pre()">上一张</button>
+    <button ng-click="next()">下一张</button>
+</div>
+<div ng-controller="ctr3">
+    <div class="progress">
+        <div class="progress-bar progress-bar-success progress-bar-striped active " style="width:40%"></div>
+
+    </div>
+    <div class="progress">
+        <div class="progress-bar progress-bar-danger progress-bar-striped active " ng-style="wid"></div>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/angular.js"></script>
+<script>
+    angular.module('mymod1',['ng'])
+            .controller('ctr1',function($scope){
+             $scope.count=0;
+                $scope.add=function(){
+                    $scope.count++
+                }
+            })
+            .controller('ctr2',function($scope){
+                $scope.imgsrc='1.jpg';
+                $scope.next=function(){
+                    var num=parseInt($scope.imgsrc.substring(0,$scope.imgsrc.indexOf('.')));
+                     num=num<4? num+1:1;
+                    $scope.imgsrc=num+'.jpg'
+                }
+                $scope.pre=function(){
+                    var num=parseInt($scope.imgsrc.substring(0,$scope.imgsrc.indexOf('.')));
+                    num=num<2? 4:num-1;
+                    $scope.imgsrc=num+'.jpg'
+                }
+            })
+            .controller('ctr3',function($scope,$interval){
+                var per=0;
+                $scope.wid={width:'0%'};
+               var t= $interval(function(){
+                    per+=10;
+                    $scope.wid.width=per+'%';
+               if(per>=60){$interval.cancel(t);}
+               },200)
+            })
+</script>
+</body>
+</html>

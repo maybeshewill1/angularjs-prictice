@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="mymod1">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+</head>
+<body>
+<div class="container">
+    <div ng-controller="myctr1"></div>
+    <hr/>
+    <div ng-controller="myctr2"></div>
+    <hr/>
+    <div ng-controller="myctr3"></div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/angular.js"></script>
+<script>
+    angular.module('mymod1',['ng'])
+            .controller('myctr1',function($scope){
+                console.log('\n控制器1开始创建');
+                console.log('控制器1创建完成');
+            })
+            .controller('myctr2',function($scope){
+                console.log('\n控制器2开始创建');
+                console.log('控制器2创建完成');})
+            .controller('myctr3',function($scope){
+                console.log('\n控制器3开始创建');
+                console.log('控制器3创建完成');
+            })
+</script>
+</body>
+</html>
